@@ -15,6 +15,7 @@ void init(int count, int size)
 void *Allocate(void)
 {
     //TODO: allocation
+    
 }
 
 //Returns a block allocated by "Allocate()" to the block pool. Release()
