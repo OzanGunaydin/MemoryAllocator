@@ -1,6 +1,6 @@
 GCC=gcc
 SRC=src
-CFLAGS = -c -Wall
+CFLAGS = -c -Wall -DNDEBUG
 OBJECTS = MemTest.o MemAllocator.o
 RM = rm -rf
 
