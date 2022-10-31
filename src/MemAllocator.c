@@ -1,3 +1,17 @@
+/*
+================
+* Memory Allocator
+* 
+* Initializes a requested number of blocks from heap
+* and maintaines these blocks via Allocate and Release calls
+*
+* init function must be called first.
+*
+* Author: Ozan Gunaydin
+* Oct 2022
+===============
+*/
+
 #include <stdlib.h>
 #include "MemAllocator.h"
 

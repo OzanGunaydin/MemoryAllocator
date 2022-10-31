@@ -4,6 +4,17 @@
 
 #define TEST_SIZE 10
 
+/*
+================
+* Main
+* This is the executable unit test module for Memory Allocator.
+* 
+* Tests Usage: Remove DNDEBUG from CFLAGS in Makefile and rebuild.
+* 
+* Author: Ozan Gunaydin
+* Oct 2022
+================
+*/
 int main()
 {
    // TODO
