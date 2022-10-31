@@ -15,6 +15,25 @@
 #include <stdlib.h>
 #include "MemAllocator.h"
 
+//-----
+//LOCAL DATA
+//
+
+typedef struct Block {
+  /**
+   * *next containts the address of next block in a list
+   */
+  struct Block *next;
+} Block;
+
+//main pointer to keep track of allocation
+static Block  *allocPointer = NULL;
+
+
+
+//--------------------------
+//PUBLIC API FUNCTIONS
+//
 
 //Allocate up to "count" blocks each of "size" bytes
 //Heap can only be used once during init, and init must be called first.
@@ -29,7 +48,7 @@ void init(int count, int size)
 void *Allocate(void)
 {
     //TODO: allocation
-    
+    return NULL;
 }
 
 //Returns a block allocated by "Allocate()" to the block pool. Release()
