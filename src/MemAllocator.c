@@ -20,6 +20,7 @@
 //LOCAL DATA
 //
 
+//Block structure keeps track of the list
 typedef struct Block {
   /**
    * *next containts the address of next block in a list
@@ -29,53 +30,85 @@ typedef struct Block {
 
 //main pointer to keep track of allocation
 //always points to next free block, so allocation can always be achieved in O(1) time
-static Block  *allocPointer = NULL;
-
+static Block *allocPointer = NULL;
 
 
 //--------------------------
 //PUBLIC API FUNCTIONS
 //
 
-//Allocate up to "count" blocks each of "size" bytes
-//Heap can only be used once during init, and init must be called first.
+
+/*
+ * Function:  init
+ * --------------------
+ * allocates up to count blocks each of size bytes
+ *  
+ *  count: number of blocks in the list
+ *  size: size of the data type
+ *  
+ */
 void init(int count, int size)
 {
-    //cast return pointer to Block type and assign as first block
-    allocPointer = (Block *) malloc(count*size);
- 
-    //Create the list and links
-   Block *currBlock = allocPointer;
   
-   for (int i=0; i < count-1; ++i) {
-     currBlock->next = (Block *)(currBlock + size);
+    //Allocate enough memory from heap to accommodate space for data and list pointers
+    allocPointer = (void *) malloc(count*size + count*sizeof(Block*));
+
+    //Create the list and links
+    Block *currBlock = allocPointer;
+     
+    //Chain the list
+    for (int i=0; i < count-1; ++i) {
+     currBlock->next = (Block *)((char*)currBlock + size + sizeof(Block*));
      currBlock = currBlock->next;
-   }
- 
-   //end of list
-   currBlock->next = NULL;
- 
+    }
+    //end of list
+    currBlock->next= NULL;
+           
+   
 }
 
-//Returns a pointer to one of the "count" blocks set up by Init(). If no
-//blocks remain, return NULL
-//Must execute in constant time O(1)
+
+/*
+ * Function:  Allocate
+ * --------------------
+ *  returns a pointer to one of the blocks set by Init().
+ *  If no blocks remain, returns NULL
+ *  Executes in constant time O(1) since allocpointer always points to
+ *  next free block
+ */
 void *Allocate(void)
 {
-    //TODO: allocation
+
     if(allocPointer==NULL)
     {
         printf("No Pool has been initialized or the pool is fully allocated");
         return NULL;
     }
+    Block *currBlock = allocPointer;
+    allocPointer = currBlock->next;
+    return currBlock;
     
 }
 
-//Returns a block allocated by "Allocate()" to the block pool. Release()
-//may assume pBlock is not NULL and was returned by Allocate().
-//Must execute in constant time O(1)
+
+/*
+ * Function:  Release
+ * --------------------
+ *  returns a block allocated by Allocate() back to the block pool.
+ *  Executes in constant time O(1) since allocpointer always points to
+ *  next free block
+ */
 void Release(void *pBlock)
 {
     //check if the pointer is null, return if nothing is there to be released
-    //TODO: deallocation
+    if(pBlock==NULL)
+    {
+        printf("There is nothing to release\n");
+        return;
+    }
+    
+     Block *currBlock = pBlock;
+     currBlock->next  =  allocPointer;
+     allocPointer  = currBlock;
+  
 }
