@@ -49,7 +49,7 @@ static Block *allocPointer = NULL;
  */
 void init(int count, int size)
 {
-  
+
     //Allocate enough memory from heap to accommodate space for data and list pointers
     allocPointer = (void *) malloc(count*size + count*sizeof(Block*));
 
@@ -64,7 +64,6 @@ void init(int count, int size)
     //end of list
     currBlock->next= NULL;
            
-   
 }
 
 
@@ -78,10 +77,8 @@ void init(int count, int size)
  */
 void *Allocate(void)
 {
-
     if(allocPointer==NULL)
     {
-        printf("No Pool has been initialized or the pool is fully allocated");
         return NULL;
     }
     Block *currBlock = allocPointer;
@@ -106,7 +103,7 @@ void Release(void *pBlock)
         printf("There is nothing to release\n");
         return;
     }
-    
+
      Block *currBlock = pBlock;
      currBlock->next  =  allocPointer;
      allocPointer  = currBlock;
