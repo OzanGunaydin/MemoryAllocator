@@ -1,4 +1,4 @@
-Memory Allocator and tests 
+Small footprint Memory Allocator and tests 
 
 ------------
 DESCRIPTION:
