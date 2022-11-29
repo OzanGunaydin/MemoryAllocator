@@ -1,10 +1,12 @@
-Small footprint Memory Allocator and tests 
+Small footprint Memory Allocator for Embedded Systems and tests 
 
 ------------
 DESCRIPTION:
 Allocates a pool of memory blocks as requested from the user code and maintains this pool.
 Uses the heap only once during initialization.
-All allocations and releases are constant time O(1)
+All allocations and releases are constant time O(1).
+Crafted for embedded system usage since the dynamic memory allocation is used only during boot time for a statically 
+defined size and this memory pool is managed
 
 
 ------------
